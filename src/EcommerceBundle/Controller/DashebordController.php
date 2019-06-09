@@ -15,9 +15,9 @@ class DashebordController extends Controller
 {
     public function indexAction()
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) { 
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) { 
             throw $this->createNotFoundException('You are not allowed to access this page');  
-        }*/
+        }
 
         $em = $this->getDoctrine()->getEntityManager();
         $products = $em->getRepository('EcommerceBundle:Product')->findAll();
