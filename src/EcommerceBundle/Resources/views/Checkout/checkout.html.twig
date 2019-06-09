@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row p-5">
+                        <div class="col-md-6">
+                            <img src="{{ asset('assets/images/logos/1200px-La_Poste_tunisienne_2011.svg.png') }}" style="width:25%">
+                        </div>
+
+
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold mb-1">Facture</p>
+                            <p class="text-muted">Le {{ "now"|date("m/d/Y") }}</p>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!--<div class="row pb-5 p-5">
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-4">Client Information</p>
+                            <p class="mb-1">Lorem Ipsum</p>
+                            <p>Acme Inc</p>
+                            <p class="mb-1">Berlin, Germany</p>
+                            <p class="mb-1">6781 45P</p>
+                        </div>-->
+
+                        
+                    </div>
+
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">ID</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Item</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Categorie</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% set total = 0 %}
+                                {% for product in products %}
+                                    <tr>
+                                        <td>{{ product.id }}</td>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.getCategorie().name }}</td>
+                                        <td>{{ panier[product.id] }}</td>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.price * panier[product.id]|number_format }} DT</td>
+                                        {% set total = total + (product.price * panier[product.id]) %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% set discount = 10 %}
+                    {% set subTotal = total - ((total * discount) /100) %}
+                    <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Grand Total</div>
+                            <div class="h2 font-weight-light">{{ subTotal|number_format }} DT</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Discount</div>
+                            
+                            <div class="h2 font-weight-light">{{ discount }}%</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Sub - Total amount</div>
+                           
+                            <div class="h2 font-weight-light">{{ total }} DT</div>
+                        </div> 
+                    </div>
+                    <br>
+                    
+                    <div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/placerCommande" method="post">
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Détails de facturation</h3>
+            <label for="adr"><i class="fa fa-user"></i> Nom</label>
+            <input type="text" id="adr" name="nom" placeholder="">
+            <label for="city"><i class="fa fa-user"></i> Prénom</label>
+            <input type="text" id="city" name="prenom" placeholder="">
+
+            <h3>Adresse de facturation</h3>
+            <label for="adr"><i class="fa fa-address-card-o"></i> Addresse</label>
+            <input type="text" id="adr" name="addresse" placeholder="">
+            <label for="city"><i class="fa fa-institution"></i> Ville</label>
+            <input type="text" id="city" name="ville" placeholder="">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="zip">Code Postal</label>
+                <input type="text" id="zip" name="zip" placeholder="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>Détails du paiement</h3>
+            <label for="cname">Nom sur la carte</label>
+            <input type="text" id="cname" name="nom_carte" placeholder="">
+            <label for="ccnum">Numéro de la carte</label>
+            <input type="text" id="ccnum" name="num_carte" placeholder="1111-2222-3333-4444">
+            <label for="expmonth">Mois d'expiration</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Année d'expiration</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2020">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="total" value="{{ total }}">
+          <input type="submit" class="btn btn-success btn-lg" value="Placer votre commande" style="background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;">
+        </div>
+      </form>
+    </div>
+  </div>
+ </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+{% endblock %}

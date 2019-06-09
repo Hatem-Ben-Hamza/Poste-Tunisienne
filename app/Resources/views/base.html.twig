@@ -1,0 +1,211 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+
+<title>Boutique en ligne de la poste Tunisienne  </title>
+
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon-32x32.png') }}">
+
+<!-- jQuery -->
+<script src="{{ asset('assets/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- plugin: owl carousel  -->
+<link href="{{ asset('assets/plugins/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
+<script src="{{ asset('assets/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
+
+<!-- custom style -->
+<link href="{{ asset('assets/css/ui.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="{{ asset('assets/js/script.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+}); 
+// jquery end
+</script>
+
+</head>
+<body>
+<header class="section-header">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+  </div>
+</nav>
+
+<section class="header-main shadow-sm">
+	<div class="container">
+<div class="row-sm align-items-center">
+	<div class="col-lg-4-24 col-sm-3">
+	
+				<a style="    display: block;
+    margin: 0 auto;" class="navbar-brand" href="/"><img class="logo" src="{{ asset('assets/images/logos/1200px-La_Poste_tunisienne_2011.svg.png') }}" alt="alibaba style e-commerce html template file" title="alibaba e-commerce html css theme"></a>
+
+	</div>
+	<div class="col-lg-11-24 col-sm-8">
+			
+	</div> <!-- col.// -->
+	<div class="col-lg-9-24 col-sm-12">
+		<div class="widgets-wrap float-right row no-gutters py-1">
+			<div class="col-auto">
+			{% if app.user %}
+              <div class="dropdown" style="padding-left:10px;padding-top:5px;">
+				<button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">{{ app.user.username }}</a>                
+                  <a class="dropdown-item" href="/logout">Déconnexion</a>
+                </div>
+            </div>
+            {% else %}
+			<div class="widget-header dropdown">
+				<a href="/login">
+					<div class="icontext">
+						<div class="icon-wrap"><i class="text-warning icon-sm fa fa-user"></i></div>
+						<div class="text-wrap text-dark">
+							Se connecter 
+						</div>
+					</div>
+				</a>
+			</div>  <!-- widget-header .// -->
+			<div class="widget-header dropdown">
+				<a href="/register">
+					<div class="icontext">
+						<div class="icon-wrap"><i class="text-warning icon-sm fa fa-user"></i></div>
+						<div class="text-wrap text-dark">
+							S'inscrire 
+						</div>
+					</div>
+				</a>
+			</div>  <!-- widget-header .// -->
+			{% endif %}
+			</div> <!-- col.// -->
+			<div class="col-auto">
+				<a href="/cart" class="widget-header">
+					<div class="icontext">
+						<div class="icon-wrap"><i class="text-warning icon-sm fa fa-shopping-cart"></i></div>
+						<div class="text-wrap text-dark">
+							Panier 
+						</div>
+					</div>
+				</a>
+			</div> <!-- col.// -->
+			<div class="col-auto">
+				<a href="#" class="widget-header">
+					<div class="icontext">
+						<!--<div class="icon-wrap"><i class="text-warning icon-sm  fa fa-heart"></i></div>-->
+						<!--<div class="text-wrap text-dark">
+							<span class="small round badge badge-secondary">0</span>
+							<div>Favories</div>
+						</div>-->
+					</div>
+				</a>
+			</div> <!-- col.// -->
+		</div> <!-- widgets-wrap.// row.// -->
+	</div> <!-- col.// -->
+</div> <!-- row.// -->
+	</div> <!-- container.// -->
+</section> <!-- header-main .// -->
+</header> <!-- section-header.// -->
+
+        
+        {% block main %}{% endblock %}
+<!-- ========================= SECTION LINKS ========================= -->
+<section class="section-links bg padding-y-sm">
+<div class="container">
+<div class="row">
+	<div class="col-sm-6">
+<header class="section-heading heading-line">
+	<h4 class="title-section bg text-uppercase">Livraison sur toute la Tunisie</h4>
+</header>
+
+<ul class="list-icon row">
+	
+	<li class="col-md-4"><a href="#"><img src="{{ asset('assets/images/Flag_of_Tunisia.png') }}"><span>Tunisie</span></a></li>
+</ul>
+	</div> <!-- col // -->
+
+	<div class="col-sm-6">
+<header class="section-heading heading-line">
+	<h4 class="title-section bg text-uppercase">Nos Services</h4>
+</header>
+<ul class="list-icon row">
+	<li class="col-md-4"><a href="#"><i class="icon fa fa-comment"></i><span>Assistance</span></a></li>
+	<li class="col-md-4"><a href="#"><i class="icon fa fa-phone-square"></i><span>Service Client</span></a></li>
+</ul>
+	</div> <!-- col // -->
+</div><!-- row // -->
+
+
+
+</div><!-- container // -->
+</section>
+<!-- ========================= SECTION LINKS END.// ========================= -->
+
+<!-- ========================= SECTION SUBSCRIBE ========================= -->
+<section class="section-subscribe bg-secondary padding-y-lg">
+<div class="container">
+
+<p class="pb-2 text-center white">Fournir les dernières tendances de produits et les nouvelles de l'industrie directement dans votre boîte de réception</p>
+
+<div class="row justify-content-md-center">
+	<div class="col-lg-4 col-sm-6">
+<form class="row-sm form-noborder">
+		<div class="col-8">
+		<input class="form-control" placeholder="Votre Email" type="email">
+		</div> <!-- col.// -->
+		<div class="col-4">
+		<button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> S'abonner </button>
+		</div> <!-- col.// -->
+</form>
+	</div> <!-- col-md-6.// -->
+</div>
+	
+
+</div> <!-- container // -->
+</section>
+<!-- ========================= SECTION SUBSCRIBE END.//========================= -->
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="section-footer bg-secondary">
+	<div class="container">
+		<section class="footer-top padding-top">
+			<br> 
+		</section>
+		<section class="footer-bottom row border-top-white">
+			<div class="col-sm-6"> 
+				<p class="text-white-50">Copyright &copy  <br>  La Poste Tunisienne 2019.</p>
+			</div>
+			
+		</section> <!-- //footer-top -->
+	</div><!-- //container -->
+</footer>
+<!-- ========================= FOOTER END // ========================= -->
+
+
+</body>
+</html>

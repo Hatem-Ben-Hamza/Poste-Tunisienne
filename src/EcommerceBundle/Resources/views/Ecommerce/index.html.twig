@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<div class="container">
+{% for flashMessage in app.session.flashbag.get('success') %}
+
+    <div class="alert alert-success" role="alert">
+  		{{ flashMessage }}
+	</div>
+</div>
+{% endfor %}
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-main bg padding-y-sm">
+<div class="container">
+<div class="card">
+	<div class="card-body">
+<div class="row row-sm">
+	<aside class="col-md-3">
+<h5 class="text-uppercase">Notre Shop</h5>
+	<ul class="menu-category">
+		{% for categorie in categories %}
+			<li> <a href="/categorie{{ categorie.id }}">{{ categorie.name }}</a></li>
+		{% endfor %}
+	</ul>
+
+	</aside> <!-- col.// -->
+	<div class="col-md-6">
+
+<!-- ================= main slide ================= -->
+<div class="owl-init slider-main owl-carousel" data-items="1" data-nav="true" data-dots="false">
+	<div class="item-slide">
+		<img src="{{ asset('assets/images/banners/flowers.png') }}">
+	</div>
+	<div class="item-slide">
+		<img src="{{ asset('assets/images/banners/timbre-bey.png') }}">
+	</div>
+</div>
+<!-- ============== main slidesow .end // ============= -->
+
+	</div> <!-- col.// -->
+	<aside class="col-md-3">
+
+<h6 class="title-bg bg-secondary"> Lorem Ipsum</h6>
+<div style="height:280px;">
+	<figure class="itemside has-bg border-bottom" style="height: 33%;">
+		<figcaption class="p-2">
+			<h6 class="title">Lorem Ipsum </h6>
+		</figcaption>
+	</figure>
+
+	<figure class="itemside has-bg border-bottom" style="height: 33%;">
+		<figcaption class="p-2">
+			<h6 class="title">Lorem Ipsum </h6>
+		</figcaption>
+	</figure>
+	<figure class="itemside has-bg border-bottom" style="height: 33%;">
+		<figcaption class="p-2">
+			<h6 class="title">Lorem Ipsum </h6>
+		</figcaption>
+	</figure>
+</div>
+
+	</aside>
+</div> <!-- row.// -->
+	</div> <!-- card-body .// -->
+</div> <!-- card.// -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y-sm bg">
+<div class="container">
+
+<header class="section-heading heading-line">
+	<h4 class="title-section bg">FLEURS</h4>
+</header>
+
+<div class="card">
+<div class="row no-gutters">
+	<div class="col-md-3">
+	
+<article href="#" class="card-banner h-100 bg2">
+	<div class="card-body zoom-wrap">
+		<h5 class="title">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+		<a href="#" class="btn btn-warning">Découvrir</a>
+		<img src="{{ asset('assets/images/bouqet2.png') }}" height="200" class="img-bg zoom-in">
+	</div>
+</article>
+
+	</div> <!-- col.// -->
+	<div class="col-md-9">
+<ul class="row no-gutters border-cols">
+	{% for categorie in categories %}
+	{% if categorie.parentCategory == 'fleurs' %}
+	<li class="col-6 col-md-3">
+<a href="/categorie{{ categorie.id }}" class="itembox"> 
+	<div class="card-body">
+		<p class="word-limit">{{ categorie.name }}</p>
+		<img class="img-sm" src="{{ asset(categorie.image) }}">
+	</div>
+</a>	
+	</li>
+{% endif %}
+{% endfor %}
+</ul>
+	</div> <!-- col.// -->
+</div> <!-- row.// -->
+	
+</div> <!-- card.// -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+<!-- ========================= SECTION REQUEST ========================= -->
+<section class="section-request bg padding-y-sm">
+<div class="container">
+<header class="section-heading heading-line">
+	<h4 class="title-section bg text-uppercase">Commander maintenant</h4>
+</header>
+
+<div class="row">
+	<div class="col-md-12">
+<figure class="card-banner banner-size-lg">
+	<img src="{{ asset('assets/images/banners/banniere-rapidposte-et-dhl.png') }}" style="width:100%">
+</figure>
+	</div> <!-- col // -->
+	<div class="col-md-4">
+
+
+
+	</div> <!-- col // -->
+</div><!-- row // -->
+
+</div><!-- container // -->
+</section>
+<!-- ========================= SECTION REQUEST .END// ========================= -->
+
+<!-- ========================= SECTION ITEMS ========================= -->
+<section class="section-request bg padding-y-sm">
+<div class="container">
+<header class="section-heading heading-line">
+	<h4 class="title-section bg text-uppercase">Recommended items</h4>
+</header>
+
+<div class="row-sm">
+{% for product in products %}
+{% if loop.index <= 8 %}
+<div class="col-md-2">
+	<figure class="card card-product">
+		<div class="img-wrap"><a href="/product{{ product.id }}"> <img src="{{ product.image }}"></a></div>
+		<figcaption class="info-wrap">
+			<h6 class="title "><a href="/product{{ product.id }}">{{ product.name }}</a></h6>
+			<div class="price-wrap">
+				<span class="price-new">{{ product.price }}DT</span>
+			</div> <!-- price-wrap.// -->
+		</figcaption>
+	</figure> <!-- card // -->
+</div> <!-- col // -->
+{% endif %}
+{% endfor %}
+</div> <!-- row.// -->
+
+
+</div><!-- container // -->
+</section>
+<!-- ========================= SECTION ITEMS .END// ========================= -->
+
+  
+{% endblock %}

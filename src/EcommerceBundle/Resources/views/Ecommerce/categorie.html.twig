@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="container">
+<div class="padding-y-sm">
+<span>{{ products|length }} articles trouvés</span>	
+</div>
+<div class="row-sm">
+{% for product in products %}
+<div class="col-md-3 col-sm-6">
+	<figure class="card card-product">
+		<div class="img-wrap"> <img src="{{ product.image  }}"></div>
+		<figcaption class="info-wrap">
+			<a href="/product{{ product.id }}" class="title">{{ product.name }}</a>
+			<div class="price-wrap">
+				<span class="price-new">{{ product.price }}DT</span>
+			</div> <!-- price-wrap.// -->
+		</figcaption>
+	</figure> <!-- card // -->
+</div> <!-- col // -->
+{% endfor %}
+</div>
+</div>
+{% endblock %}
